@@ -109,3 +109,5 @@ describe( 'component', () => {
 		})
 	})
 })
+
+export default setup

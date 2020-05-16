@@ -6,15 +6,15 @@ const AppointmentDetail = ({
 }) => (
 	<dl>
 		<dt>Appointment name</dt>
-		<dd> { name } </dd>
+		<dd>{ name }</dd>
 		<dt>Owner</dt>
-		<dd> { owner } </dd>
+		<dd>{ owner }</dd>
 		<dt>Date</dt>
-		<dd> { date } </dd>
+		<dd>{ date }</dd>
 		<dt>Start</dt>
-		<dd> { start } </dd>
+		<dd>{ start }</dd>
 		<dt>End</dt>
-		<dd> { end } </dd>
+		<dd>{ end }</dd>
 	</dl>
 )
 

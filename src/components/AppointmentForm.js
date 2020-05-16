@@ -9,7 +9,7 @@ export default class AppointmentForm extends Component {
 		date : PropTypes.string,
 		start: PropTypes.string,
 		end  : PropTypes.string,
-		inputComponent: PropTypes.element.isRequired
+		inputComponent: PropTypes.element
 	}
 	
 	state = {

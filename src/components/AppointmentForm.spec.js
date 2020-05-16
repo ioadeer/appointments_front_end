@@ -7,19 +7,37 @@ import moment from 'moment'
 
 const setup = (propOverrides) => {
 
+	const renderer = createRenderer();
+
+	const propPopulate = { name: 'Nadar', owner: 'Joaquin', date:'2020-01-01', end:'end'}
+	const handlerPopulate ={
+						handleNameChange  :jest.fn(),    
+						handleOwnerChange :jest.fn(),     
+						handleDateChange  :jest.fn(),    
+						handleStartChange :jest.fn(),    
+						handleEndChange		:jest.fn() 
+						}
+	const preProps = Object.assign({
+		props: propPopulate, 
+		handlers: handlerPopulate
+	})
+
+	renderer.render(<AppointmentFieldSet {...preProps}/>)
+	const out = renderer.getRenderOutput()
+
 	const props = Object.assign({
 		onSave: jest.fn(),
 		name: 'Nadar',
 		owner: 'Joaquin',
 		date: '2020-01-01',
 		start: '13:00:00',
-		end: '14:00:00'
+		end: '14:00:00',
+		inputComponent: out
 	}, propOverrides)
-
-	const renderer = createRenderer();
 
 	renderer.render(<AppointmentForm {...props}/>)
 	const output = renderer.getRenderOutput()
+
 	return{
 		props: props,
 		output: output,
@@ -36,7 +54,7 @@ describe( 'component', () => {
 			expect(output.props.className).toBe('AppointmentForm')
 
 			const appointmentFieldSet = output.props.children
-			expect(appointmentFieldSet.type).toBe(AppointmentFieldSet)
+			expect(appointmentFieldSet.type).toBe('fieldset')
 		})
 
 		it('should call onSave function', () => {

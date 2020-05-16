@@ -24,7 +24,7 @@ describe( 'component', () => {
 		it('should render correctly', () => {
 			const { output } = setup()
 			expect(output.type).toBe(TimePicker)
-			expect(output.props.format).toBe('hh:mm a')
+			expect(output.props.format).toBe('HH:mm a')
 			expect(output.props.defaultValue).toBeInstanceOf(moment)
 		})
 		it('should call onChange function', () => {
