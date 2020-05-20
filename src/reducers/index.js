@@ -1,10 +1,18 @@
 import { combineReducers } from 'redux'
+import { connectRouter } from 'connected-react-router'
 import appointments from './appointments'
 import visibilityFilter from './visibilityFilter'
 
-const rootReducer = combineReducers({
+export const rootReducer = combineReducers({
 	appointments,
 	visibilityFilter
 })
 
-export default rootReducer 
+
+const createRootReducer = (history) => combineReducers({
+	router: connectRouter(history),
+	appointments,
+	visibilityFilter
+})
+
+export default createRootReducer
