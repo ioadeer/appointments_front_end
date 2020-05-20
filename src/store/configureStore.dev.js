@@ -8,29 +8,26 @@ import createRootReducer from '../reducers'
 import { rootReducer } from '../reducers'
 import storage from 'redux-persist/lib/storage'
 import { composeWithDevTools } from 'redux-devtools-extension'
+import { createFilter } from 'redux-persist-transform-filter'
+import { apiMiddleware } from 'redux-api-middleware'
 
+const authFilter= createFilter(
+	'auth', ['access', 'refresh'])
+
+const appointmentFilter = createFilter(
+	'appointments',
+	['id','name','owner','date','start','end'])
 
 const persistConfig = {
 	key: 'root',
-	storage
+	storage : storage,
+	whitelist: ['auth','appointments','visibilityFilter'],
+	transforms: [authFilter]
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
-//const configureStore = preloadedState =>{
-//	let store = createStore(
-//		persistedReducer,
-//		preloadedState,
-//		composeWithDevTools(
-//			applyMiddleware(thunk, createLogger()),
-//		)
-//	)
-//	let persistor = persistStore(store)
-//	return { store, persistor }
-//}
-
 export const history = createBrowserHistory()
-
 
 export default function configureStore(preloadedState){
 	const store = createStore(
@@ -38,6 +35,7 @@ export default function configureStore(preloadedState){
 		preloadedState,
 		composeWithDevTools(
 			applyMiddleware(
+				apiMiddleware,
 				routerMiddleware(history), // for dispatching history actions
 				thunk,
 				createLogger(),
@@ -51,3 +49,14 @@ export default function configureStore(preloadedState){
 
 
 //export default configureStore
+//const configureStore = preloadedState =>{
+//	let store = createStore(
+//		persistedReducer,
+//		preloadedState,
+//		composeWithDevTools(
+//			applyMiddleware(thunk, createLogger()),
+//		)
+//	)
+//	let persistor = persistStore(store)
+//	return { store, persistor }
+//}
