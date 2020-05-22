@@ -51,7 +51,9 @@ export default class AppointmentItem extends Component{
 			<li className="appointment">
 				{ element }
 				<button onClick={() => deleteAppointment(appointment.id)}>Delete</button>
-				<button onClick={this.handleEdit}>Edit</button>
+				{!this.state.editing &&
+					<button onClick={this.handleEdit}>Edit</button>
+				}
 			
 			</li>
 		)

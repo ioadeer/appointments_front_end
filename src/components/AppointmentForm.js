@@ -74,7 +74,3 @@ export default class AppointmentForm extends Component {
 	}
 }
 
-//				<AppointmentFieldSet
-//					props={this.state}
-//					handlers={handlers} 
-//				/>
