@@ -6,30 +6,31 @@ import DateTimeInput from './DateTimeInput'
 import Label from './Label'
 
 const AppointmentFieldSet = ({
-	props, handlers
+	props, handlers, names
 	}) => {
 		const { name, owner, date } = props
-		const { handleNameChange, handleOwnerChange, 
-						handleDateChange, handleStartChange,
-						handleEndChange } = handlers
+		const { handleTextChange, handleTimeChange } = handlers
+
 		return (
 			<fieldset className="AppointmentFieldSet">
 				<legend>Create Appointment</legend>
 					<Label className="Name" text="Name"
-					element= <TextInput className="Name" value={name} onChange={handleNameChange} /> 
+					element= <TextInput className="Name" value={name} onChange={handleTextChange} name={names[names.indexOf('name')]}/> 
 					/>
 					<Label className="Owner" text="Owner"
-					element = <TextInput className="Owner" value={owner} onChange={handleOwnerChange} /> 
+					element = <TextInput className="Owner" value={owner} onChange={handleTextChange} name={names[names.indexOf('owner')]}/> 
 					/>
 					<DateTimeInput 
 						text="Start"
 						className="Start"
 						dateInputValue={date}
-						onChangeDate={handleDateChange}
-						onChangeTime={handleStartChange}
+						onChangeDate={handleTextChange}
+						onChangeTime={handleTimeChange}
+						timeInputName= {names[names.indexOf('start')]}
+					  dateInputName= {names[names.indexOf('date')]}
 					/>
 					<Label className="End" text="End"
-					element=<TimeInput onChange={handleEndChange} /> 
+					element=<TimeInput onChange={handleTimeChange} name={names[names.indexOf('end')]}/> 
 					/>
 					<button type="submit" value="Submit">
 						Add Date
@@ -40,7 +41,8 @@ const AppointmentFieldSet = ({
 
 AppointmentFieldSet.propTypes = {
 	props: PropTypes.object,
-	handlers: PropTypes.object
+	handlers: PropTypes.object,
+	names: PropTypes.array
 }
 
 export default AppointmentFieldSet

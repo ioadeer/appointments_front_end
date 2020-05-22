@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { validateTextInput } from './validation/TextInputValidation'
 
 export default class AppointmentForm extends Component {
 	static  propTypes = {
@@ -13,62 +14,140 @@ export default class AppointmentForm extends Component {
 	}
 	
 	state = {
-		name : this.props.name  || '',
-		owner : this.props.owner  || '',
-		date : this.props.date  || '',
-		start : this.props.start  || '',
-		end : this.props.end  || '',
+		formControls: {
+			name: {
+				value: this.props.name  || '',
+				placeholder: '',
+				valid: false,
+				touched: false,
+				validationRules:{
+					minLength:3,
+					isRequired: true
+				}
+			},
+			owner: {
+				value: this.props.owner || '',
+				placeholder: '',
+				valid: false,
+				touched: false,
+				validationRules:{
+					minLength:3
+				}
+			},
+			date: {
+				value: this.props.date  || '',
+				placeholder: '',
+				valid: false,
+				touched: false,
+				validationRules:{
+					minLength:3
+				}
+			},
+			start: {
+				value:this.props.start  || '',
+				placeholder: '',
+				valid: false,
+				touched: false,
+				validationRules:{
+					minLength:3
+				}
+			},
+			end: {
+				value: this.props.end   || '',
+				placeholder: '',
+				valid: false,
+				touched: false,
+				validationRules:{
+					minLength:3
+				}
+			},
+		}
 	}
 
 	handleSubmit = e => {
 		e.preventDefault();
-		this.props.onSave(this.state);
-		let keys = Object.keys(this.state);
-		keys.map( key => this.setState({ [key] : ''})); 
+		let data;
+		for( let [ key, value ] of Object.entries(this.state.formControls)){
+			data = {...data, [key] : value.value};
+		}
+		this.props.onSave(data);
+		let keys = Object.keys(this.state.formControls);
+		keys.map( key => this.setState({ 
+				formControls: {
+					...this.state.formControls,
+					[key]: { 
+						...this.state.formControls[key],
+					  value : ''
+					}
+				}
+			})); 
 	}
 
-	handleNameChange =  e => {
-		this.setState({ name : e.target.value })
+	handleTextChange = e => {
+		const name = e.target.name;
+		const value = e.target.value;
+
+		const updatedControls = {
+			...this.state.formControls
+		};
+
+		const updatedFormElement = {
+			...updatedControls[name]	
+		};
+
+		updatedFormElement.value = value;
+		updatedFormElement.touched = true;
+		updatedFormElement.valid = validateTextInput(value, 
+																updatedFormElement.validationRules);
+		updatedControls[name] = updatedFormElement;
+
+		this.setState({
+			formControls: updatedControls
+			//formControls: {
+			//	...this.state.formControls,
+			//	[name]: { 
+			//		...this.state.formControls[name],
+			//		value
+			//	}
+			//}
+		});
 	}
 
-	handleOwnerChange =  e => {
-		this.setState({ owner: e.target.value })
-	}
-
-	handleDateChange =  e => {
-		this.setState({ date: e.target.value })
-	}
-
-	handleStartChange =  e => {
-		//this.setState({ start: e.target.value })
+	handleTimeChange = (e, n) => {
 		if(e === null) { return }
-		let time = e.format('HH:mm:00')
-		this.setState({ start: time })
-	}
-
-	handleEndChange=  e => {
-		//this.setState({ end: e.target.value })
-		if(e === null) { return }
-		let time = e.format('HH:mm:00')
-		this.setState({ end: time })
+		const name = n.name;
+		const value = e.format('HH:mm:00');
+		this.setState({ 
+			formControls: {
+				...this.state.formControls,
+				[name]: {
+					...this.state.formControls[name],
+					value
+				}
+			}
+		});
 	}
 
 	render() {
+
+		const names = Object.keys(this.state.formControls);
 		const handlers = {
-			handleNameChange : this.handleNameChange,
-			handleOwnerChange:this.handleOwnerChange,
-			handleDateChange : this.handleDateChange,
-			handleStartChange:this.handleStartChange,
-			handleEndChange	 :  this.handleEndChange
+			handleTextChange: this.handleTextChange,  
+			handleTimeChange: this.handleTimeChange
 		}
-	
+		let values;
+
+		for( let [ key, value ] of Object.entries(this.state.formControls)){
+			values= {...values, [key] : value.value};
+		}
+
 		return(
 			
 			<form onSubmit={
 				this.handleSubmit
 			} className="AppointmentForm">
 				{React.cloneElement(this.props.inputComponent,
-						{ props:this.state,handlers:handlers})}
+						{ props:values, names:names , handlers:handlers})}
 			</form>
 		)
 	}
