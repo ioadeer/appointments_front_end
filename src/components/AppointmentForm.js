@@ -14,78 +14,101 @@ export default class AppointmentForm extends Component {
 	}
 	
 	state = {
+		valid: true,
 		formControls: {
 			name: {
 				value: this.props.name  || '',
 				placeholder: '',
 				valid: false,
 				touched: false,
-				validationRules:{
-					minLength:3,
-					isRequired: true
-				}
 			},
 			owner: {
 				value: this.props.owner || '',
 				placeholder: '',
 				valid: false,
 				touched: false,
-				validationRules:{
-					minLength:3
-				}
 			},
 			date: {
 				value: this.props.date  || '',
 				placeholder: '',
 				valid: false,
 				touched: false,
-				validationRules:{
-					minLength:3
-				}
 			},
 			start: {
 				value:this.props.start  || '',
 				placeholder: '',
-				valid: false,
+				valid: true,
 				touched: false,
-				validationRules:{
-					minLength:3
-				}
 			},
 			end: {
 				value: this.props.end   || '',
 				placeholder: '',
-				valid: false,
+				valid: true,
 				touched: false,
-				validationRules:{
-					minLength:3
-				}
+			}
+		},
+		validationRules: {
+			name: {
+				minLength:3,
+				isRequired: true
 			},
+			owner: {
+				minLength:3,
+				isRequired: true
+			},
+			date: {
+				minLength:3,
+				isRequired: true
+			},
+			start: {
+				minLength:3,
+			},
+			end: {
+				minLength:3,
+			}
+		}
+	}
+
+	componentDidMount(){
+		// check if props make form valid
+		let component = this.props.inputComponent;
+		if(component.type.name ==="AppointmentEdit"){
+			const formControls= {
+				...this.state.formControls
+			}
+			const rulesCopy = {
+				...this.state.validationRules
+			}
+			for( let [ key, value ] of Object.entries(formControls)){
+				//this.setState( { 
+				//	...formControls,
+				//		formControls[key]: {
+				//			valid: true, 
+				//		}
+				//	}
+				//)
+			}
 		}
 	}
 
 	handleSubmit = e => {
 		e.preventDefault();
 		let data;
+		let isFormValid = true;
+		
 		for( let [ key, value ] of Object.entries(this.state.formControls)){
-			data = {...data, [key] : value.value};
+			isFormValid = isFormValid && value.valid;
 		}
-		this.props.onSave(data);
-		let keys = Object.keys(this.state.formControls);
-		keys.map( key => this.setState({ 
-				formControls: {
-					...this.state.formControls,
-					[key]: { 
-						...this.state.formControls[key],
-					  value : ''
-					}
-				}
-			})); 
+		this.setState({ valid: isFormValid });
+		if(isFormValid){
+			for( let [ key, value ] of Object.entries(this.state.formControls)){
+				data = {...data, [key] : value.value};
+			}
+			this.props.onSave(data);
+		}
 	}
 
-	handleTextChange = e => {
-		const name = e.target.name;
-		const value = e.target.value;
+	validateInput = (name, value, validationFunction) => {
 
 		const updatedControls = {
 			...this.state.formControls
@@ -95,37 +118,32 @@ export default class AppointmentForm extends Component {
 			...updatedControls[name]	
 		};
 
+		const validationRules = {
+			...this.state.validationRules[name]
+		}
 		updatedFormElement.value = value;
 		updatedFormElement.touched = true;
-		updatedFormElement.valid = validateTextInput(value, 
-																updatedFormElement.validationRules);
+		updatedFormElement.valid = validationFunction(value, 
+																validationRules);
 		updatedControls[name] = updatedFormElement;
 
 		this.setState({
 			formControls: updatedControls
-			//formControls: {
-			//	...this.state.formControls,
-			//	[name]: { 
-			//		...this.state.formControls[name],
-			//		value
-			//	}
-			//}
 		});
+
+	}
+
+	handleTextChange = e => {
+		const name = e.target.name;
+		const value = e.target.value;
+		this.validateInput(name, value,validateTextInput);
 	}
 
 	handleTimeChange = (e, n) => {
 		if(e === null) { return }
 		const name = n.name;
 		const value = e.format('HH:mm:00');
-		this.setState({ 
-			formControls: {
-				...this.state.formControls,
-				[name]: {
-					...this.state.formControls[name],
-					value
-				}
-			}
-		});
+		this.validateInput(name,value,validateTextInput);
 	}
 
 	render() {
