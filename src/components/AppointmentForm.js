@@ -70,23 +70,21 @@ export default class AppointmentForm extends Component {
 	}
 
 	componentDidMount(){
-		// check if props make form valid
+		// set initial state of valid to true if component is Appointment Edit 
 		let component = this.props.inputComponent;
 		if(component.type.name ==="AppointmentEdit"){
 			const formControls= {
 				...this.state.formControls
 			}
-			const rulesCopy = {
-				...this.state.validationRules
-			}
 			for( let [ key, value ] of Object.entries(formControls)){
-				//this.setState( { 
-				//	...formControls,
-				//		formControls[key]: {
-				//			valid: true, 
-				//		}
-				//	}
-				//)
+				const updatedField = {
+					...formControls[key]
+				}
+				updatedField.valid = true;
+				formControls[key] = updatedField;
+				this.setState( { 
+					formControls: formControls
+				})
 			}
 		}
 	}
