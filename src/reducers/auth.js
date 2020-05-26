@@ -70,6 +70,7 @@ export function isRefreshTokenExpired(state){
 }
 
 export function isAuthenticated(state){
+	//return true
 	return !isRefreshTokenExpired(state)
 }
 
