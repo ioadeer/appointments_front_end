@@ -94,15 +94,29 @@ export default class AppointmentForm extends Component {
 		let data;
 		let isFormValid = true;
 		
-		for( let [ key, value ] of Object.entries(this.state.formControls)){
-			isFormValid = isFormValid && value.valid;
+		const formControls= {
+			...this.state.formControls
+		}
+		for( let [ key ] of Object.entries(formControls)){
+			isFormValid = isFormValid && formControls[key].valid; 
 		}
 		this.setState({ valid: isFormValid });
 		if(isFormValid){
-			for( let [ key, value ] of Object.entries(this.state.formControls)){
+			for( let [ key, value ] of Object.entries(formControls)){
 				data = {...data, [key] : value.value};
 			}
 			this.props.onSave(data);
+
+			for( let [ key ] of Object.entries(formControls)){
+				const updatedField = {
+					...formControls[key]
+				}
+				updatedField.value = '';
+				formControls[key] = updatedField;
+				this.setState( { 
+					formControls: formControls
+				})
+			}
 		}
 	}
 
