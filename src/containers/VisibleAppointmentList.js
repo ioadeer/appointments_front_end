@@ -6,7 +6,8 @@ import * as AppointmentActions from '../actions'
 import { setVisibilityFilter } from '../actions'
 
 const mapStateToProps = (state,ownProps) => ({
-	filteredAppointments: getVisibleAppointments(state)	
+	filteredAppointments: getVisibleAppointments(state),
+	refresh: state.appointments.refresh
 })
 
 const mapDispatchToProps = (dispatch,ownProps) => ({

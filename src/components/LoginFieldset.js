@@ -14,7 +14,7 @@ const LoginFieldset = ({
 			element= <TextInput className="Name" value={name} onChange={handleChange} name={names[names.indexOf('name')]}/> 
 			/>
 			<Label className="Password" text="Password"
-			element= <TextInput className="Password" value={password} onChange={handleChange} name={names[names.indexOf('password')]}/> 
+			element= <TextInput className="Password" value={password} onChange={handleChange} name={names[names.indexOf('password')]} type="password" /> 
 			/>
 			<button type="submit" value="Submit">
 			Log in	

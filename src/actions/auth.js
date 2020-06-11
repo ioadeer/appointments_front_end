@@ -10,7 +10,7 @@ export const TOKEN_FAILURE  = '@@auth/TOKEN_FAILURE'
 
 export const login = (username, password) => ({
 	[RSAA]: {
-		endpoint: 'api/token/',
+		endpoint: 'api/v1/token/',
 		method: 'POST',
 		body: JSON.stringify({username, password}),
 		headers: {'Content-Type' : 'application/json' },
@@ -22,7 +22,7 @@ export const login = (username, password) => ({
 
 export const refreshAccessToken = (token) => ({
 	[RSAA]: {
-		endpoint: 'api/token/refresh',
+		endpoint: 'api/v1/token/refresh/',
 		method: 'POST',
 		body: JSON.stringify({refresh: token}),
 		headers: {'Content-Type' : 'application/json' },

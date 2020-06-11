@@ -3,7 +3,7 @@ import { SHOW_ALL, SHOW_PAST, SHOW_FUTURE } from '../constants/AppointmentFilter
 import moment from 'moment'
 
 const getVisibilityFilter = state => state.visibilityFilter
-const getAppointments = state => state.appointments
+const getAppointments = state => state.appointments.appointmentList
 const now = moment()
 
 export const getVisibleAppointments = createSelector(

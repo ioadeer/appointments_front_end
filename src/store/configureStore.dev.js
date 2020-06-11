@@ -9,7 +9,8 @@ import { rootReducer } from '../reducers'
 import storage from 'redux-persist/lib/storage'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { createFilter } from 'redux-persist-transform-filter'
-import { apiMiddleware } from 'redux-api-middleware'
+//import { apiMiddleware } from 'redux-api-middleware'
+import  apiMiddleware  from '../middleware'
 
 const authFilter= createFilter(
 	'auth', ['access', 'refresh'])
