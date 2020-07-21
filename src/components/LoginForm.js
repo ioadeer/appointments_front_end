@@ -39,7 +39,6 @@ export default class LoginForm extends Component {
 
 	handleSubmit = e => {
 		e.preventDefault();
-		let data;
 		let isFormValid = true;
 		let name;
 		let pass;

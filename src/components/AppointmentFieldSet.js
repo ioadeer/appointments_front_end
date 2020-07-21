@@ -8,7 +8,7 @@ import Label from './Label'
 const AppointmentFieldSet = ({
 	props, handlers, names
 	}) => {
-		const { name, owner, date } = props
+		const { name, location , date } = props
 		const { handleTextChange, handleTimeChange } = handlers
 
 		return (
@@ -17,8 +17,8 @@ const AppointmentFieldSet = ({
 					<Label className="Name" text="Name"
 					element= <TextInput className="Name" value={name} onChange={handleTextChange} name={names[names.indexOf('name')]}/> 
 					/>
-					<Label className="Owner" text="Owner"
-					element = <TextInput className="Owner" value={owner} onChange={handleTextChange} name={names[names.indexOf('owner')]}/> 
+					<Label className="Location" text="Location"
+					element = <TextInput className="Location" value={location} onChange={handleTextChange} name={names[names.indexOf('location')]}/> 
 					/>
 					<DateTimeInput 
 						text="Start"

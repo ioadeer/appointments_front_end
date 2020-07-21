@@ -9,6 +9,8 @@ const initialState = {
 
 export default (state=initialState, action) => {
 	switch(action.type){
+		case auth.LOGOUT:
+			return initialState
 		case auth.LOGIN_SUCCESS:
 			return {
 				access: {
@@ -19,6 +21,7 @@ export default (state=initialState, action) => {
 					token: action.payload.refresh,
 					...jwtDecode(action.payload.refresh)
 				},
+				name: action.payload.name,
 				errors:{}
 			}
 		case auth.TOKEN_RECEIVED:	

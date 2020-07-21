@@ -48,16 +48,3 @@ export default function configureStore(preloadedState){
 	return { store, persistor }
 }
 
-
-//export default configureStore
-//const configureStore = preloadedState =>{
-//	let store = createStore(
-//		persistedReducer,
-//		preloadedState,
-//		composeWithDevTools(
-//			applyMiddleware(thunk, createLogger()),
-//		)
-//	)
-//	let persistor = persistStore(store)
-//	return { store, persistor }
-//}

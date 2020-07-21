@@ -9,6 +9,8 @@ export const validateTextInput = (value, rules) => {
 			case 'isRequired': isValid = 
 					isValid && requiredValidator(value);
 				break;
+			default:
+				break;
 		}
 	}
 

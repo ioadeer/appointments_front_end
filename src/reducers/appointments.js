@@ -1,7 +1,7 @@
 import{
-	ADD_APPOINTMENT,
-	DELETE_APPOINTMENT,
-	EDIT_APPOINTMENT,
+	//ADD_APPOINTMENT,
+	//DELETE_APPOINTMENT,
+	//EDIT_APPOINTMENT,
 	FETCH_APPOINTMENTS_REQUEST,
 	FETCH_APPOINTMENTS_SUCCESS,
 	FETCH_APPOINTMENTS_FAILURE,
@@ -16,6 +16,8 @@ import{
 	EDIT_APPOINTMENT_FAILURE
 } from '../constants/ActionTypes'
 
+import { LOGOUT } from '../actions/auth'
+
 const initialState = {
 	appointmentList: [],
 	loading: false,
@@ -23,7 +25,6 @@ const initialState = {
 	refresh: true,
 }
 
-let add = 0;
 let tempAppointments= [];
 const setUpAppointments = (state, payload) => {
 	
@@ -46,6 +47,8 @@ const setUpAppointments = (state, payload) => {
 
 const appointments = ( state = initialState,action) => {
 	switch(action.type){
+		case LOGOUT:
+			return initialState
 		case ADD_APPOINTMENT_REQUEST:
 			return {...state, loading: true}
 		case ADD_APPOINTMENT_SUCCESS:
@@ -76,17 +79,4 @@ const appointments = ( state = initialState,action) => {
 	}
 }
 
-const payloadToState = (item,state) => {
-	return [ 
-				...state,
-				{
-					id: item.id,
-					name: item.name,
-					owner: item.owner,
-					date: item.date,
-					start: item.start,
-					end: item.end
-				}
-	]
-}
 export default appointments

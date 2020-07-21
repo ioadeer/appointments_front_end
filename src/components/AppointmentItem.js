@@ -23,7 +23,7 @@ export default class AppointmentItem extends Component{
 	}
 
 	render(){
-		const { id, name, owner, date, start, end } = this.props.appointment
+		const { id, name, location, date, start, end } = this.props.appointment
 		const { appointment, deleteAppointment } = this.props
 		let element
 		if(this.state.editing){
@@ -34,7 +34,7 @@ export default class AppointmentItem extends Component{
 					}
 					inputComponent={<AppointmentEdit />}
 				  name = {name}	
-					owner = {owner}
+					location = { location }
 					date = {date}
 					start = {start}
 				 	end = {end}

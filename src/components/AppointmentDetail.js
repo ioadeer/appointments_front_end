@@ -2,13 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const AppointmentDetail = ({
-	name, owner, date, start, end
+	name, owner, date, start, end, location
 }) => (
 	<dl>
 		<dt>Appointment name</dt>
 		<dd>{ name }</dd>
-		<dt>Owner</dt>
-		<dd>{ owner }</dd>
+		<dt>Location </dt>
+		<dd>{ location }</dd>
 		<dt>Date</dt>
 		<dd>{ date }</dd>
 		<dt>Start</dt>

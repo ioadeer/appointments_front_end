@@ -6,7 +6,7 @@ export default class AppointmentForm extends Component {
 	static  propTypes = {
 		onSave: PropTypes.func.isRequired,
 		name : PropTypes.string,
-		owner: PropTypes.string,
+		location : PropTypes.string,
 		date : PropTypes.string,
 		start: PropTypes.string,
 		end  : PropTypes.string,
@@ -14,36 +14,36 @@ export default class AppointmentForm extends Component {
 	}
 	
 	state = {
-		valid: true,
+		valid: false,
 		formControls: {
 			name: {
 				value: this.props.name  || '',
 				placeholder: '',
-				valid: false,
+				valid: this.props.name!=='',
 				touched: false,
 			},
-			owner: {
-				value: this.props.owner || '',
+			location: {
+				value: this.props.location || '',
 				placeholder: '',
-				valid: false,
+				valid: this.props.location!=='',
 				touched: false,
 			},
 			date: {
 				value: this.props.date  || '',
 				placeholder: '',
-				valid: false,
+				valid: this.props.date!=='',
 				touched: false,
 			},
 			start: {
 				value:this.props.start  || '',
 				placeholder: '',
-				valid: true,
+				valid: this.props.start!=='',
 				touched: false,
 			},
 			end: {
 				value: this.props.end   || '',
 				placeholder: '',
-				valid: true,
+				valid: this.props.end!=='',
 				touched: false,
 			}
 		},
@@ -52,7 +52,7 @@ export default class AppointmentForm extends Component {
 				minLength:3,
 				isRequired: true
 			},
-			owner: {
+			location: {
 				minLength:3,
 				isRequired: true
 			},
@@ -107,15 +107,19 @@ export default class AppointmentForm extends Component {
 			}
 			this.props.onSave(data);
 
-			for( let [ key ] of Object.entries(formControls)){
-				const updatedField = {
-					...formControls[key]
+			let component = this.props.inputComponent;
+			if(component.type.name !=="AppointmentEdit"){
+				for( let [ key ] of Object.entries(formControls)){
+					const updatedField = {
+						...formControls[key]
+					}
+					updatedField.value = '';
+					updatedField.valid = false;
+					formControls[key] = updatedField;
+					this.setState( { 
+						formControls: formControls,
+					})
 				}
-				updatedField.value = '';
-				formControls[key] = updatedField;
-				this.setState( { 
-					formControls: formControls
-				})
 			}
 		}
 	}
