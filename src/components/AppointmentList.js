@@ -10,16 +10,11 @@ export default class AppoitnmentList extends Component{
 		filteredAppointments: PropTypes.arrayOf(PropTypes.shape({
 			id: PropTypes.number.isRequired,
 			name: PropTypes.string.isRequired,
-			location: PropTypes.string.isRequired,
+			owner: PropTypes.string.isRequired,
 			date: PropTypes.string.isRequired,
 			start: PropTypes.string.isRequired,
 		}).isRequired).isRequired,
-		actions:PropTypes.object.isRequired,
-		refresh: PropTypes.bool
-	}
-
-	refreshComponent = () =>{
-		this.props.actions.fetchUserAppointments();
+		actions:PropTypes.object.isRequired
 	}
 	render(){
 		const filteredAppointments = this.props.filteredAppointments;

@@ -3,6 +3,7 @@ import { connectRouter } from 'connected-react-router'
 import appointments from './appointments'
 import visibilityFilter from './visibilityFilter'
 import auth, * as fromAuth from './auth'
+import signup from './signup'
 
 export const rootReducer = combineReducers({
 	appointments,
@@ -14,7 +15,8 @@ const createRootReducer = (history) => combineReducers({
 	router: connectRouter(history),
 	appointments,
 	visibilityFilter,
-	auth
+	auth,
+	signup
 })
 
 export default createRootReducer

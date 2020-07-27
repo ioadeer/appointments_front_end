@@ -8,7 +8,8 @@ export const setVisibilityFilter = filter => ({ type : types.SET_VISIBILITY_FILT
 
 export const deleteAppointment= (id) => ({
 	[RSAA]: {
-		endpoint: `api/v1/appointments/${id}`,
+		//endpoint: `api/v1/appointments/${id}`,
+		endpoint: `http://127.0.0.1:8000/api/v1/appointments/${id}`,
 		method: 'DELETE',
 		headers: withAuth({'Content-Type' : 'application/json' }),
 		types: [
@@ -22,6 +23,7 @@ export const deleteAppointment= (id) => ({
 export const editAppointment= (id, data) => ({
 	[RSAA]: {
 		endpoint: `api/v1/appointments/${id}`,
+		//endpoint: `http://127.0.0.1:8000/api/v1/appointments/${id}`,
 		method: 'PUT',
 		headers: withAuth({'Content-Type' : 'application/json' }),
 		body: JSON.stringify(
@@ -42,6 +44,7 @@ export const editAppointment= (id, data) => ({
 })
 export const addAppointment = (data) => ({
 	[RSAA]: {
+		//endpoint: `http://127.0.0.1:8000/api/v1/appointments/`,
 		endpoint: 'api/v1/appointments/',
 		method: 'POST',
 		body: JSON.stringify(
@@ -65,6 +68,7 @@ export const addAppointment = (data) => ({
 export const fetchUserAppointments = () => ({
 	[RSAA]: {
 		endpoint: 'api/v1/appointments/',
+		//endpoint: `http://127.0.0.1:8000/api/v1/appointments/`,
 		method: 'GET',
 		headers: withAuth({'Content-Type' : 'application/json' }),
 		types: [

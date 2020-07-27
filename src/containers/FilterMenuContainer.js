@@ -1,11 +1,12 @@
 import { connect } from 'react-redux'
+import React from 'react'
 import { setVisibilityFilter } from '../actions'
-import ButtonLink from '../components/ButtonLink'
+import FilterMenu from '../components/FilterMenu'
 
 
 const mapStateToProps = (state, ownProps) => ({
-	active: ownProps.filter === state.visibilityFilter,
 	stateFilter: state.visibilityFilter,
+	paramsFilter: ownProps.filter
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
@@ -14,8 +15,19 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 	}
 })
 
+//const FilterMenuContainer = (props) => {
+//	
+//	if(props.stateFilter!==props.paramsFilter){
+//	 props.setFilter()
+//	}
+//
+//	return (
+//		<FilterMenu {...props} />	
+//	)
+//}
+
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(ButtonLink)
+)(FilterMenu)
 
