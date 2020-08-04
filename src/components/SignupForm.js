@@ -9,9 +9,11 @@ export default class SignupForm extends Component {
 		email: PropTypes.string,
 		password: PropTypes.string,
 		passwordRepeat: PropTypes.string,
+		errors: PropTypes.string,
 	}
 	
 	state = {
+		errors: this.props.errors  || '',
 		valid: true,
 		formControls: {
 			name: {
@@ -113,6 +115,7 @@ export default class SignupForm extends Component {
 	render() {
 
 		const names = Object.keys(this.state.formControls);
+		const errors = this.state.errors;
 		let values;
 		for( let [ key, value ] of Object.entries(this.state.formControls)){
 			values= {...values, [key] : value.value};
@@ -123,6 +126,9 @@ export default class SignupForm extends Component {
 			<form onSubmit={
 				this.handleSubmit
 			} className="SignupForm">
+				{errors &&
+				<p> { errors } </p>
+				}
 				<SignupFieldset
 					props={values}
 					handleChange={this.handleTextChange}

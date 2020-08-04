@@ -2,6 +2,7 @@ import{
 	SIGNUP_REQUEST, 
 	SIGNUP_SUCCESS, 
 	SIGNUP_FAILURE,
+	SIGNUP_SUCCESS_REDIRECT,
 } from '../actions/signup'
 
 const initialState = {
@@ -13,6 +14,8 @@ const initialState = {
 const signup = ( state = initialState, action) => {
 
 	switch(action.type){
+		case SIGNUP_SUCCESS_REDIRECT:
+			return initialState
 		case SIGNUP_REQUEST:
 			return {
 				...state,
