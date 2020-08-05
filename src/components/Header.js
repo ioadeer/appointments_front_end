@@ -5,7 +5,7 @@ import AppointmentFieldSet from './AppointmentFieldSet'
 
 const Header = ({ addAppointment }) => (
 	<header>
-		<h1>Add Date</h1>
+		<h1>Appointments app</h1>
 		<AppointmentForm
 			onSave={(data) => {
 				addAppointment(data)

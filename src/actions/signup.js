@@ -6,8 +6,9 @@ export const SIGNUP_FAILURE	= '@@signup/SIGNUP_FAILURE'
 
 export const signup = (data) => ({
 	[RSAA]: {
-		endpoint: 'api/v1/rest-auth/registration/',
-		//endpoint: 'http://127.0.0.1:8000/api/v1/token/',
+		//endpoint: 'api/v1/rest-auth/registration/',
+		//endpoint: 'http://127.0.0.1:8000/api/v1/rest-auth/registration/',
+		endpoint: 'https://rest-appointments-backend.herokuapp.com/api/v1/rest-auth/registration/'
 		method: 'POST',
 		body: JSON.stringify(
 		{ 

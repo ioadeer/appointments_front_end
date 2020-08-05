@@ -195,11 +195,13 @@ label[for="Name"], label[for="Owner"]{
 	 justify-content: center;
 	}
 
-	label[for="Name"], label[for="Owner"]{
+	label[for="Name"], label[for="Location"],label[for="Password"], label[for="Email"]{
 		display: flex;
 		flex-direction: row;
-		justify-content: space-around;
+		/*justify-content: space-around;*/
+		justify-content: flex-end;
 		flex-wrap: nowrap;
+		margin-bottom: 5px;
 	}
 	.Start,label[for="End"]{
 		display: flex;
@@ -246,6 +248,12 @@ label[for="Name"], label[for="Owner"]{
 	.filters {
 		padding: 0;
 		display: inline-flex;
+	}
+	.SignupLink{
+		/*display: flex;
+		align-items: center;
+		justify-content: center;*/
+		text-align: center;
 	}
 }
 

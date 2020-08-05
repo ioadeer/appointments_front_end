@@ -13,10 +13,9 @@ const Root = ({ store, history }) => (
 	<Provider store={store}>
 			<ConnectedRouter history={history}>
 				<Switch>
-					<Route exact path="/login/" component={Login} />	
+					<Route path="/login" component={Login} />	
 					<Route path="/sign-up" component={Signup} />
 					<PrivateRoute exact path="/:filter?" component={App} />
-					
 				</Switch>
 			</ConnectedRouter>
 	</Provider>
