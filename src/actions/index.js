@@ -19,7 +19,7 @@ export const deleteAppointment= (id) => ({
 //		endpoint: `http://127.0.0.1:8000/api/v1/appointments/${id}`,
 		method: 'DELETE',
 		//headers: withAuth({'Content-Type' : 'application/json' }),
-		headers: withAuth({'Content-Type' : 'application/json','Access-Control-Allow-Origin': 'https://rest-appointments-backend.herokuapp.com','Access-Control-Allow-Credentials': 'true' }),
+		headers: withAuth({'Content-Type' : 'application/json' }),
 		types: [
 			types.DELETE_APPOINTMENT_REQUEST, 
 			types.DELETE_APPOINTMENT_SUCCESS, 
@@ -34,8 +34,7 @@ export const editAppointment= (id, data) => ({
 		//endpoint: `http://127.0.0.1:8000/api/v1/appointments/${id}`,
 		endpoint: `https://rest-appointments-backend.herokuapp.com/api/v1/appointments/${id}`,
 		method: 'PUT',
-		//headers: withAuth({'Content-Type' : 'application/json' }),
-		headers: withAuth({'Content-Type' : 'application/json','Access-Control-Allow-Origin': 'https://rest-appointments-backend.herokuapp.com','Access-Control-Allow-Credentials': 'true' }),
+		headers: withAuth({'Content-Type' : 'application/json'}),
 		body: JSON.stringify(
 			{
 				name: data.name,
@@ -67,8 +66,7 @@ export const addAppointment = (data) => ({
 				end: data.end,
 				location: data.location,
 			}),
-		//headers: withAuth({'Content-Type' : 'application/json' }),
-		headers: withAuth({'Content-Type' : 'application/json','Access-Control-Allow-Origin': 'https://rest-appointments-backend.herokuapp.com','Access-Control-Allow-Credentials': 'true' }),
+		headers: withAuth({'Content-Type' : 'application/json' }),
 		types: [
 			types.ADD_APPOINTMENT_REQUEST, 
 			types.ADD_APPOINTMENT_SUCCESS, 
