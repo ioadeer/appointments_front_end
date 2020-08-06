@@ -15,7 +15,8 @@ export const login = (username, password) => ({
 		endpoint: 'https://rest-appointments-backend.herokuapp.com/api/v1/token/',
 		method: 'POST',
 		body: JSON.stringify({username, password}),
-		headers: {'Content-Type' : 'application/json' },
+		//headers: {'Content-Type' : 'application/json' },
+		headers: {'Content-Type' : 'application/json','Allow-Control-Allow-Origin': 'https://rest-appointments-backend.herokuapp.com','Access-Control-Allow-Credentials': 'true' },
 		types: [
 			LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE
 		]
@@ -29,7 +30,8 @@ export const refreshAccessToken = (token) => ({
 		//endpoint: 'api/v1/token/refresh/',
 		method: 'POST',
 		body: JSON.stringify({refresh: token}),
-		headers: {'Content-Type' : 'application/json' },
+		//headers: {'Content-Type' : 'application/json' },
+		headers: {'Content-Type' : 'application/json','Allow-Control-Allow-Origin': 'https://rest-appointments-backend.herokuapp.com','Access-Control-Allow-Credentials': 'true' },
 		types: [
 			TOKEN_REQUEST, TOKEN_RECEIVED, TOKEN_FAILURE
 		]

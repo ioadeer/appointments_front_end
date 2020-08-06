@@ -17,7 +17,8 @@ export const signup = (data) => ({
 			password1: data.password,
 			password2: data.passwordRepeat
 		}),
-		headers: {'Content-Type' : 'application/json' },
+		//headers: {'Content-Type' : 'application/json' },
+		headers: {'Content-Type' : 'application/json','Allow-Control-Allow-Origin': 'https://rest-appointments-backend.herokuapp.com','Access-Control-Allow-Credentials': 'true' },
 		types: [
 			SIGNUP_REQUEST, SIGNUP_SUCCESS, SIGNUP_FAILURE
 		]
