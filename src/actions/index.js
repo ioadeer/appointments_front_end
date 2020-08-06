@@ -81,7 +81,7 @@ export const fetchUserAppointments = () => ({
 		//endpoint: 'http://127.0.0.1:8000/api/v1/appointments/',
 		endpoint: 'https://rest-appointments-backend.herokuapp.com/api/v1/appointments/',
 		method: 'GET',
-		headers: withAuth({'Content-Type' : 'application/json','Access-Control-Allow-Origin': 'https://rest-appointments-backend.herokuapp.com','Access-Control-Allow-Credentials': 'true' }),
+		headers: withAuth({'Content-Type' : 'application/json' }),
 		types: [
 			types.FETCH_APPOINTMENTS_REQUEST, 
 			types.FETCH_APPOINTMENTS_SUCCESS, 
