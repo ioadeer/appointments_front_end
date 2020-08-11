@@ -16,6 +16,9 @@ const Login = (props) => {
 			<div className="login-page">
 				<LoginForm {...props} />
 				<div className="SignupLink">
+				{ props.errors &&
+					<p class="login-error"> { props.errors.detail } </p>
+				}
 				<p>Please register if you don't have an account yet </p>
 			  <button onClick={() => { props.signup() }}>Sign up</button>
 				</div>

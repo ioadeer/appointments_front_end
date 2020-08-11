@@ -35,7 +35,7 @@ const signup = ( state = initialState, action) => {
 				success: false,
 				loading: false,
 				errors: 
-					action.payload.errors ||
+					action.payload.response ||
 				{'non_field_errors': action.payload.statusText},
 			}
 		default:

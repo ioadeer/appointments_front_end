@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { validateTextInput } from './validation/TextInputValidation'
 import SignupFieldset from './SignupFieldset'
+import Error_log from './Error_log'
 
 export default class SignupForm extends Component {
 	static  propTypes = {
@@ -9,11 +10,11 @@ export default class SignupForm extends Component {
 		email: PropTypes.string,
 		password: PropTypes.string,
 		passwordRepeat: PropTypes.string,
-		errors: PropTypes.string,
+		errors: PropTypes.object,
 	}
 	
 	state = {
-		errors: this.props.errors  || '',
+		errors: this.props.errors,
 		valid: true,
 		formControls: {
 			name: {
@@ -48,7 +49,8 @@ export default class SignupForm extends Component {
 			},
 			email: {
 				minLength:3,
-				isRequired: true
+				isRequired: true,
+				emailValid: true
 			},
 			password: {
 				minLength:3,
@@ -58,7 +60,7 @@ export default class SignupForm extends Component {
 				minLength:3,
 				isRequired: true
 			},
-		}
+		},
 	}
 
 	handleSubmit = e => {
@@ -115,27 +117,52 @@ export default class SignupForm extends Component {
 	render() {
 
 		const names = Object.keys(this.state.formControls);
-		const errors = this.state.errors;
 		let values;
 		for( let [ key, value ] of Object.entries(this.state.formControls)){
 			values= {...values, [key] : value.value};
 		}
+		const errors = this.props.errors;
+		if(errors){
+			const email_errors = errors.email; 
+			const name_errors = errors.name; 
+			const password_errors = errors.password1; 
+		}
+		const errors_log = []
+		if(errors){
+			for( const error in errors){
+				errors[error].map((item,index,arr) => {
+					errors_log.push(<Error_log value={item} key={error+index}/>)		
+				})
+			}	
+		}
 
 		return(
-			
+			<div>
 			<form onSubmit={
 				this.handleSubmit
 			} className="SignupForm">
-				{errors &&
-				<p> { errors } </p>
-				}
 				<SignupFieldset
 					props={values}
 					handleChange={this.handleTextChange}
 					names={names}
 				/>
 			</form>
+			{ errors &&
+				<ul className="signup-errors">
+				{ errors_log }
+				</ul>
+			}
+			</div>
 		)
 	}
 }
 
+/*
+				{ email_errors &&
+					<ul>
+							{email_errors.map((item,index) => {
+								<li key={index}>{item}</li>
+							})}
+					</ul>
+				}
+*/

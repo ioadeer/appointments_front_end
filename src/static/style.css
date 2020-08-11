@@ -29,7 +29,8 @@ fieldset{
 fieldset > button {
 	align-self: center;
 }
-label[for="Name"], label[for="Owner"]{
+label[for="Name"], label[for="Owner"],
+label[for="Name invalid"]{
 
 		display: flex;
 		flex-direction: row;
@@ -120,7 +121,7 @@ label[for="Name"], label[for="Owner"]{
 	 justify-content: center;
 	}
 
-	label[for="Name"], label[for="Owner"]
+	label[for="Name"], label[for="Owner"],label[for="Name invalid"]
 	{
 		display: flex;
 		flex-direction: row;
@@ -195,7 +196,10 @@ label[for="Name"], label[for="Owner"]{
 	 justify-content: center;
 	}
 
-	label[for="Name"], label[for="Location"],label[for="Password"], label[for="Email"]{
+
+	label[for="Name"], label[for="Name invalid"],
+	label[for="Location"],label[for="Password"], 
+	label[for="Email"]{
 		display: flex;
 		flex-direction: row;
 		/*justify-content: space-around;*/
@@ -203,13 +207,38 @@ label[for="Name"], label[for="Owner"]{
 		flex-wrap: nowrap;
 		margin-bottom: 5px;
 	}
+
+	label[for="Name invalid"] {
+		border-color: 1px solid red;
+	}
+
 	.Start,label[for="End"]{
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		text-align: center;
 	}
-
+	.error-message{
+		margin-top: 1px;
+		margin-bottom: 1px;
+		font-size: 0.75em;
+		text-align: right;
+		color: red;
+	}
+	.login-error{
+		margin-top: 1px;
+		margin-bottom: 1px;
+		font-size: 0.90em;
+		text-align: center;
+		color: red;
+	}
+	.signup-errors{
+		margin-top: 1px;
+		margin-bottom: 1px;
+		font-size: 0.90em;
+		text-align: center;
+		color: red;
+	}
 	.appointment-list{
 		padding: 0px;
 		display: flex;

@@ -9,6 +9,9 @@ export const validateTextInput = (value, rules) => {
 			case 'isRequired': isValid = 
 					isValid && requiredValidator(value);
 				break;
+			case 'checkEmailValidity': isValid =
+					isValid && emailValid(value);
+				break;
 			default:
 				break;
 		}
@@ -34,4 +37,10 @@ const minLengthValidator = (value, minLength) => {
  */
 const requiredValidator = value => {
 	return value.trim() !== '';
+}
+
+const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+const emailValid = (value) => {
+	return	EMAIL_REGEX.test(value);
 }

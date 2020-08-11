@@ -27,14 +27,15 @@ export default class LoginForm extends Component {
 		},
 		validationRules: {
 			name: {
-				minLength:3,
+				minLength:1,
 				isRequired: true
 			},
 			password: {
-				minLength:3,
+				minLength:1,
 				isRequired: true
 			},
-		}
+		},
+		errors: this.props.errors,
 	}
 
 	handleSubmit = e => {
@@ -95,6 +96,10 @@ export default class LoginForm extends Component {
 		for( let [ key, value ] of Object.entries(this.state.formControls)){
 			values= {...values, [key] : value.value};
 		}
+		let validFields;
+		for( let [ key, field ] of Object.entries(this.state.formControls)){
+			validFields= {...validFields, [key] : field.valid || this.state.valid };
+		}
 
 		return(
 			
@@ -105,6 +110,7 @@ export default class LoginForm extends Component {
 					props={values}
 					handleChange={this.handleTextChange}
 					names={names}
+					validFields = {validFields}
 				/>
 			</form>
 		)
