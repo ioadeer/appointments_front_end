@@ -198,7 +198,8 @@ label[for="Name invalid"]{
 
 
 	label[for="Name"], label[for="Name invalid"],
-	label[for="Location"],label[for="Password"], 
+	label[for="Location"],label[for="Location invalid"],
+	label[for="Password"], 
 	label[for="Email"]{
 		display: flex;
 		flex-direction: row;
@@ -207,9 +208,19 @@ label[for="Name invalid"]{
 		flex-wrap: nowrap;
 		margin-bottom: 5px;
 	}
+	
 
-	label[for="Name invalid"] {
-		border-color: 1px solid red;
+	.TextInput.invalid:invalid{
+		width: 75%;
+		margin-right: 3px;
+		margin-top: 0px;
+		border: 2px solid;
+		border-color: #c51244 !important;
+		border-radius: 5px;
+		background-color:#f4f4f4 !important;
+		position: relative;
+  display: inline-block !important;
+  box-shadow: 1px 1px 1px #aaaaaa
 	}
 
 	.Start,label[for="End"]{

@@ -20,7 +20,7 @@ DateTimeInput.propTypes = {
 	onChangeDate: PropTypes.func.isRequired,
 	onChangeTime: PropTypes.func.isRequired,
 	timeInputName: PropTypes.string,
-	dateInputName: PropTypes.string
+	dateInputName: PropTypes.string,
 }
 
 export default DateTimeInput

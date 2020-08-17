@@ -2,9 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const TextInput =({
-	 className, value, onChange, placeholder, name, type
+	 className, value, onChange, placeholder, name, type, isInputRequired
 }) => (
-		<input className={className} value={value} onChange={onChange} placeholder={placeholder} name={name} type={type}/>
+		<input className={className} value={value} onChange={onChange} placeholder={placeholder} name={name} type={type} required={isInputRequired}/>
 )
 
 TextInput.propTypes =  {
@@ -13,7 +13,8 @@ TextInput.propTypes =  {
 	name: PropTypes.string,
 	className: PropTypes.string,
 	placeHolder: PropTypes.string,
-	type: PropTypes.string
+	type: PropTypes.string,
+	isInputRequired: PropTypes.bool,
 }
 
 export default TextInput

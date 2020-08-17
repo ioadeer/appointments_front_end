@@ -169,10 +169,17 @@ export default class AppointmentForm extends Component {
 			handleTextChange: this.handleTextChange,  
 			handleTimeChange: this.handleTimeChange
 		}
+
 		let values;
 
 		for( let [ key, value ] of Object.entries(this.state.formControls)){
 			values= {...values, [key] : value.value};
+		}
+
+		let validFields;
+
+		for( let [ key, field ] of Object.entries(this.state.formControls)){
+			validFields= {...validFields, [key] : field.valid || this.state.valid };
 		}
 
 		return(
@@ -181,7 +188,7 @@ export default class AppointmentForm extends Component {
 				this.handleSubmit
 			} className="AppointmentForm">
 				{React.cloneElement(this.props.inputComponent,
-						{ props:values, names:names , handlers:handlers})}
+						{ props : values, names : names , handlers : handlers, validFields: validFields })}
 			</form>
 		)
 	}

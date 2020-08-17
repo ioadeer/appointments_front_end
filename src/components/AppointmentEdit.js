@@ -5,14 +5,19 @@ import TimeInput from './TimeInput'
 import DateInput from './DateInput'
 
 const AppointmentEdit = ({ 
-	props, handlers, names
+	props, handlers, names, validFields
 	}) => {
 		const { name, location , date, start, end } = props
 		const { handleTextChange, handleTimeChange } = handlers
 		return (
 			<dl>
 				<dt>Appointment name</dt>
-				<dd><TextInput value={name} placeholder={name} onChange={handleTextChange} name={names[names.indexOf('name')]}/></dd>
+				<dd><TextInput
+							value={name} 
+							placeholder={validFields.name ? '' : 'Please enter valid name' }
+							onChange={handleTextChange} 
+							name={names[names.indexOf('name')]}/>
+				</dd>
 				<dt>Location</dt>
 				<dd><TextInput value={location} onChange={handleTextChange} name={names[names.indexOf('location')]}/></dd>
 				<dt>Date</dt>
@@ -29,7 +34,8 @@ const AppointmentEdit = ({
 AppointmentEdit.propTypes = {
 	props: PropTypes.object,
 	handlers: PropTypes.object,
-	names: PropTypes.array
+	names: PropTypes.array,
+	validFields: PropTypes.object,
 }
 
 export default AppointmentEdit

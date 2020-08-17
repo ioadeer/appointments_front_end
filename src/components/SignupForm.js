@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { validateTextInput } from './validation/TextInputValidation'
 import SignupFieldset from './SignupFieldset'
-import Error_log from './Error_log'
+import ErrorLog from './ErrorLog'
 
 export default class SignupForm extends Component {
 	static  propTypes = {
@@ -131,7 +131,7 @@ export default class SignupForm extends Component {
 		if(errors){
 			for( const error in errors){
 				errors[error].map((item,index,arr) => {
-					errors_log.push(<Error_log value={item} key={error+index}/>)		
+					errors_log.push(<ErrorLog value={item} key={error+index}/>)		
 				})
 			}	
 		}

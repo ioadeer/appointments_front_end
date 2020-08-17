@@ -4,25 +4,46 @@ import TextInput from './TextInput'
 import TimeInput from './TimeInput'
 import DateTimeInput from './DateTimeInput'
 import Label from './Label'
+import classnames from 'classnames'
 
 const AppointmentFieldSet = ({
-	props, handlers, names
+	props, handlers, names, validFields
 	}) => {
 		const { name, location , date } = props
 		const { handleTextChange, handleTimeChange } = handlers
+		const validDateTime = validFields.date && validFields.start
 
 		return (
 			<fieldset className="AppointmentFieldSet">
 				<legend>Create Appointment</legend>
-					<Label className="Name" text="Name"
-					element= <TextInput className="Name" value={name} onChange={handleTextChange} name={names[names.indexOf('name')]}/> 
+					<Label 
+						className={classnames('Name',{ invalid: !validFields.name})}
+						text="Name"
+						element= <TextInput 
+							className={classnames('TextInput',{ invalid: !validFields.name})}
+							value={name} 
+							onChange={handleTextChange} 
+							name={names[names.indexOf('name')]}
+							placeholder={validFields.name ? '' : 'Please enter valid name' }
+							isInputRequired={true}
+							/> 
 					/>
-					<Label className="Location" text="Location"
-					element = <TextInput className="Location" value={location} onChange={handleTextChange} name={names[names.indexOf('location')]}/> 
+					<Label 
+						className={classnames('Location',{ invalid: !validFields.location})}
+						text="Location"
+						element = <TextInput 
+							className={classnames('TextInput',{ invalid: !validFields.location})}
+							value={location} 
+							onChange={handleTextChange} 
+							name={names[names.indexOf('location')]}
+							placeholder={validFields.location? '' : 'Enter a valid location' }
+							isInputRequired={true}
+							/> 
 					/>
 					<DateTimeInput 
 						text="Start"
-						className="Start"
+						className={classnames('Start',{ invalid: !validFields.date || !validDateTime.start})}
+						isValid={validDateTime}
 						dateInputValue={date}
 						onChangeDate={handleTextChange}
 						onChangeTime={handleTimeChange}
@@ -42,7 +63,8 @@ const AppointmentFieldSet = ({
 AppointmentFieldSet.propTypes = {
 	props: PropTypes.object,
 	handlers: PropTypes.object,
-	names: PropTypes.array
+	names: PropTypes.array,
+	validFields: PropTypes.object
 }
 
 export default AppointmentFieldSet
