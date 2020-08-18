@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import TextInput from './TextInput'
 import TimeInput from './TimeInput'
 import DateInput from './DateInput'
+import classnames from 'classnames'
 
 const AppointmentEdit = ({ 
 	props, handlers, names, validFields
@@ -14,12 +15,21 @@ const AppointmentEdit = ({
 				<dt>Appointment name</dt>
 				<dd><TextInput
 							value={name} 
+							className={classnames('TextInputEdit',{ invalid: !validFields.name})}
 							placeholder={validFields.name ? '' : 'Please enter valid name' }
 							onChange={handleTextChange} 
+							isInputRequired={true}
 							name={names[names.indexOf('name')]}/>
 				</dd>
 				<dt>Location</dt>
-				<dd><TextInput value={location} onChange={handleTextChange} name={names[names.indexOf('location')]}/></dd>
+				<dd><TextInput
+							value={location} 
+							className={classnames('TextInputEdit',{ invalid: !validFields.location})}
+							placeholder={validFields.location ? '' : 'Please enter valid location' }
+							onChange={handleTextChange} 
+							isInputRequired={true}
+							name={names[names.indexOf('location')]}/>
+				</dd>
 				<dt>Date</dt>
 				<dd><DateInput value={date} onChange={handleTextChange} name={names[names.indexOf('date')]}/></dd>
 				<dt>Start</dt>

@@ -17,32 +17,33 @@ const AppointmentFieldSet = ({
 			<fieldset className="AppointmentFieldSet">
 				<legend>Create Appointment</legend>
 					<Label 
-						className={classnames('Name',{ invalid: !validFields.name})}
+						className={classnames('Name',{ invalid: !validFields.name.valid && validFields.name.touched})}
 						text="Name"
 						element= <TextInput 
-							className={classnames('TextInput',{ invalid: !validFields.name})}
+							className={classnames('TextInput',{ invalid: !validFields.name.valid && validFields.name.touched})}
 							value={name} 
 							onChange={handleTextChange} 
 							name={names[names.indexOf('name')]}
-							placeholder={validFields.name ? '' : 'Please enter valid name' }
-							isInputRequired={true}
+							placeholder={!validFields.name.touched ? '' : 'Please enter valid name' }
+							//isInputRequired={true}
 							/> 
 					/>
 					<Label 
-						className={classnames('Location',{ invalid: !validFields.location})}
+						className={classnames('Location',{ invalid: !validFields.location.valid && validFields.location.touched})}
 						text="Location"
 						element = <TextInput 
-							className={classnames('TextInput',{ invalid: !validFields.location})}
+							className={classnames('TextInput',{ invalid: !validFields.location.valid && validFields.location.touched })}
 							value={location} 
 							onChange={handleTextChange} 
 							name={names[names.indexOf('location')]}
-							placeholder={validFields.location? '' : 'Enter a valid location' }
-							isInputRequired={true}
+							placeholder={!validFields.location.touched ? '' : 'Enter a valid location' }
+							//isInputRequired={true}
 							/> 
 					/>
+					<div className={classnames({ 'DateTimeInput-invalid': !validFields.date.valid && !validFields.time.valid  && validFields.date.touched && validFields.start.touched })}>
 					<DateTimeInput 
 						text="Start"
-						className={classnames('Start',{ invalid: !validFields.date || !validDateTime.start})}
+						className={classnames('Start',{ invalid: !validFields.date })}
 						isValid={validDateTime}
 						dateInputValue={date}
 						onChangeDate={handleTextChange}
@@ -53,6 +54,10 @@ const AppointmentFieldSet = ({
 					<Label className="End" text="End"
 					element=<TimeInput onChange={handleTimeChange} name={names[names.indexOf('end')]}/> 
 					/>
+					{!validFields.time.valid && validFields.start.touched && validFields.end.touched &&
+						<p className="error-message"><i>Start time should be earlier than end time</i></p>
+					}
+					</div>
 					<button type="submit" value="Submit">
 						Add Date
 					</button>

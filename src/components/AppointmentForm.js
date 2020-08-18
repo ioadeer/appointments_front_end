@@ -19,33 +19,34 @@ export default class AppointmentForm extends Component {
 			name: {
 				value: this.props.name  || '',
 				placeholder: '',
-				valid: this.props.name!=='',
+				valid: this.props.name!=null,
 				touched: false,
 			},
 			location: {
 				value: this.props.location || '',
 				placeholder: '',
-				valid: this.props.location!=='',
+				valid: this.props.location!=null,
 				touched: false,
 			},
 			date: {
 				value: this.props.date  || '',
 				placeholder: '',
-				valid: this.props.date!=='',
+				valid: this.props.date!=null,
 				touched: false,
 			},
 			start: {
 				value:this.props.start  || '',
 				placeholder: '',
-				valid: this.props.start!=='',
+				valid: this.props.start!=null,
 				touched: false,
 			},
 			end: {
 				value: this.props.end   || '',
 				placeholder: '',
-				valid: this.props.end!=='',
+				valid: this.props.end!=null,
 				touched: false,
-			}
+			},
+			time: { valid: false, touched:false},
 		},
 		validationRules: {
 			name: {
@@ -93,6 +94,7 @@ export default class AppointmentForm extends Component {
 		e.preventDefault();
 		let data;
 		let isFormValid = true;
+		//let isFormValid = this.state.valid;
 		
 		const formControls= {
 			...this.state.formControls
@@ -115,11 +117,27 @@ export default class AppointmentForm extends Component {
 					}
 					updatedField.value = '';
 					updatedField.valid = false;
+					updatedField.touched = false;
 					formControls[key] = updatedField;
 					this.setState( { 
 						formControls: formControls,
 					})
 				}
+				this.setState({ valid: false })
+			}
+		} else {
+			const formControls= {
+				...this.state.formControls
+			}
+			for( let [ key, value ] of Object.entries(formControls)){
+				const updatedField = {
+					...formControls[key]
+				}
+				updatedField.touched= true;
+				formControls[key] = updatedField;
+				this.setState( { 
+					formControls: formControls
+				})
 			}
 		}
 	}
@@ -149,6 +167,35 @@ export default class AppointmentForm extends Component {
 
 	}
 
+	validateTime = (name, value) => {
+
+		const updatedControls = {
+			...this.state.formControls
+		};
+
+		const updatedFormElement = {
+			...updatedControls[name]	
+		};
+		updatedFormElement.value = value;
+		updatedFormElement.touched = true;
+		updatedFormElement.valid= true;
+		let isTimeValid;
+		if(name === 'start'){
+			isTimeValid= updatedFormElement.value < updatedControls.end.value;	
+		} else if (name === 'end'){
+			isTimeValid= updatedFormElement.value > updatedControls.start.value;	
+		}
+		//updatedFormElement.valid = isTimeValid;
+		updatedControls[name] = updatedFormElement;
+		updatedControls.time.valid = isTimeValid;
+		updatedControls.time.touched = true;
+
+		this.setState({
+			formControls: updatedControls
+		});
+
+	}
+
 	handleTextChange = e => {
 		const name = e.target.name;
 		const value = e.target.value;
@@ -159,7 +206,8 @@ export default class AppointmentForm extends Component {
 		if(e === null) { return }
 		const name = n.name;
 		const value = e.format('HH:mm:00');
-		this.validateInput(name,value,validateTextInput);
+		//this.validateInput(name,value,validateTextInput);
+		this.validateTime(name,value);
 	}
 
 	render() {
@@ -179,7 +227,8 @@ export default class AppointmentForm extends Component {
 		let validFields;
 
 		for( let [ key, field ] of Object.entries(this.state.formControls)){
-			validFields= {...validFields, [key] : field.valid || this.state.valid };
+			//validFields= {...validFields, [key] : field.valid || this.state.valid };
+				validFields= {...validFields, [key] : {valid : field.valid , touched : field.touched}};
 		}
 
 		return(
