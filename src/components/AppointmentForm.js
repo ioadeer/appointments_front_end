@@ -46,7 +46,7 @@ export default class AppointmentForm extends Component {
 				valid: this.props.end!=null,
 				touched: false,
 			},
-			time: { valid: false, touched:false},
+			time: { valid: this.props.end!=null, touched:false},
 		},
 		validationRules: {
 			name: {
