@@ -29,39 +29,15 @@ fieldset{
 fieldset > button {
 	align-self: center;
 }
+label[for="Name"], label[for="Owner"],
+label[for="Name invalid"]{
 
-	label[for="Name"], label[for="Name invalid"],
-	label[for="Location"],label[for="Location invalid"],
-	label[for="Password"], 
-	label[for="Password invalid"], 
-	label[for="Email"]{
 		display: flex;
 		flex-direction: row;
-		/*justify-content: space-around;*/
-		justify-content: flex-end;
+		justify-content: space-around;
 		flex-wrap: nowrap;
-		margin-bottom: 5px;
 }
 
-	.TextInput.invalid{
-		width: 75%;
-		margin-right: 3px;
-		margin-top: 0px;
-		border: 2px solid;
-		border-color: #c51244 !important;
-		border-radius: 5px;
-		background-color:#f4f4f4 !important;
-		position: relative;
-  display: inline-block !important;
-  box-shadow: 1px 1px 1px #aaaaaa
-	}
-
-	.SignupLink{
-		/*display: flex;
-		align-items: center;
-		justify-content: center;*/
-		text-align: center;
-	}
 	.Start,label[for="End"]{
 		display: flex;
 		flex-direction: column;
@@ -122,63 +98,6 @@ fieldset > button {
  	  border: none;
  	  margin-right: 1em;
  	}
-
-	.DateTimeInput-invalid{
-		margin-right: 3px;
-		margin-top: 0px;
-		border: 2px solid;
-		border-color: #c51244 !important;
-		border-radius: 5px;
-		background-color:#f4f4f4 !important;
-  -webkit-box-shadow: 1px 1px 1px #aaaaaa;
-          box-shadow: 1px 1px 1px #aaaaaa
-	}
-	.DateInput.invalid{
-		margin-right: 3px;
-		margin-top: 0px;
-		border: 2px solid;
-		border-color: #c51244 !important;
-		border-radius: 5px;
-		background-color:#f4f4f4 !important;
-		position: relative;
-  display: inline-block !important;
-  box-shadow: 1px 1px 1px #aaaaaa
-	}
-	.TextInputEdit.invalid{
-		width: 95%;
-		height: 1.75em;
-		margin-right: 3px;
-		margin-top: 0px;
-		border: 2px solid;
-		border-color: #c51244 !important;
-		border-radius: 5px;
-		background-color:#f4f4f4 !important;
-		position: relative;
-  display: inline-block !important;
-  -webkit-box-shadow: 1px 1px 1px #aaaaaa;
-          box-shadow: 1px 1px 1px #aaaaaa
-	}
-	.error-message{
-		margin-top: 1px;
-		margin-bottom: 1px;
-		font-size: 0.75em;
-		text-align: right;
-		color: red;
-	}
-	.login-error{
-		margin-top: 1px;
-		margin-bottom: 1px;
-		font-size: 0.90em;
-		text-align: center;
-		color: red;
-	}
-	.signup-errors{
-		margin-top: 1px;
-		margin-bottom: 1px;
-		font-size: 0.90em;
-		text-align: center;
-		color: red;
-	}
 @media screen and (min-width: 70em){
 
  	nav {
@@ -302,7 +221,8 @@ fieldset > button {
 	}
 
 	.TextInput.invalid{
-		width: 75%;
+		width: 95%;
+		height: 1.75em;
 		margin-right: 3px;
 		margin-top: 0px;
 		border: 2px solid;
@@ -314,18 +234,7 @@ fieldset > button {
   box-shadow: 1px 1px 1px #aaaaaa
 	}
 
-	.DateInput.invalid{
-		margin-right: 3px;
-		margin-top: 0px;
-		border: 2px solid;
-		border-color: #c51244 !important;
-		border-radius: 5px;
-		background-color:#f4f4f4 !important;
-		position: relative;
-  display: inline-block !important;
-  box-shadow: 1px 1px 1px #aaaaaa
-	}
-	.TextInputEdit.invalid{
+	.TextInputEdit.invalid:invalid{
 		width: 95%;
 		height: 1.75em;
 		margin-right: 3px;
@@ -338,7 +247,6 @@ fieldset > button {
   display: inline-block !important;
   -webkit-box-shadow: 1px 1px 1px #aaaaaa;
           box-shadow: 1px 1px 1px #aaaaaa
-	}
 	.Start,label[for="End"]{
 		display: flex;
 		flex-direction: column;

@@ -15,7 +15,7 @@ export default class SignupForm extends Component {
 	
 	state = {
 		errors: this.props.errors,
-		valid: true,
+		valid: false,
 		formControls: {
 			name: {
 				value: this.props.name  || '',
@@ -44,16 +44,16 @@ export default class SignupForm extends Component {
 		},
 		validationRules: {
 			name: {
-				minLength:3,
+				minLength:1,
 				isRequired: true
 			},
 			email: {
-				minLength:3,
+				minLength:1,
 				isRequired: true,
-				emailValid: true
+				checkEmailValidity: true
 			},
 			password: {
-				minLength:3,
+				minLength:1,
 				isRequired: true
 			},
 			passwordRepeat: {
@@ -80,6 +80,20 @@ export default class SignupForm extends Component {
 				data = {...data, [key] : value.value};
 			}
 			this.props.onSubmit(data);
+		}else {
+			const formControls= {
+				...this.state.formControls
+			}
+			for( let [ key, value ] of Object.entries(formControls)){
+				const updatedField = {
+					...formControls[key]
+				}
+				updatedField.touched= true;
+				formControls[key] = updatedField;
+				this.setState( { 
+					formControls: formControls
+				})
+			}
 		}
 	}
 
@@ -136,6 +150,12 @@ export default class SignupForm extends Component {
 			}	
 		}
 
+		let validFields;
+
+		for( let [ key, field ] of Object.entries(this.state.formControls)){
+				validFields= {...validFields, [key] : {valid : field.valid , touched : field.touched}};
+		}
+
 		return(
 			<div>
 			<form onSubmit={
@@ -145,6 +165,7 @@ export default class SignupForm extends Component {
 					props={values}
 					handleChange={this.handleTextChange}
 					names={names}
+					validFields={validFields}
 				/>
 			</form>
 			{ errors &&
@@ -157,12 +178,3 @@ export default class SignupForm extends Component {
 	}
 }
 
-/*
-				{ email_errors &&
-					<ul>
-							{email_errors.map((item,index) => {
-								<li key={index}>{item}</li>
-							})}
-					</ul>
-				}
-*/

@@ -15,27 +15,32 @@ const AppointmentEdit = ({
 				<dt>Appointment name</dt>
 				<dd><TextInput
 							value={name} 
-							className={classnames('TextInputEdit',{ invalid: !validFields.name})}
-							placeholder={validFields.name ? '' : 'Please enter valid name' }
+							className={classnames('TextInputEdit',{ invalid: !validFields.name.valid})}
+							placeholder={validFields.name.valid ? '' : 'Please enter valid name' }
 							onChange={handleTextChange} 
-							isInputRequired={true}
+							//isInputRequired={true}
 							name={names[names.indexOf('name')]}/>
 				</dd>
 				<dt>Location</dt>
 				<dd><TextInput
 							value={location} 
-							className={classnames('TextInputEdit',{ invalid: !validFields.location})}
-							placeholder={validFields.location ? '' : 'Please enter valid location' }
+							className={classnames('TextInputEdit',{ invalid: !validFields.location.valid})}
+							placeholder={validFields.location.valid ? '' : 'Please enter valid location' }
 							onChange={handleTextChange} 
-							isInputRequired={true}
+							//isInputRequired={true}
 							name={names[names.indexOf('location')]}/>
 				</dd>
 				<dt>Date</dt>
-				<dd><DateInput value={date} onChange={handleTextChange} name={names[names.indexOf('date')]}/></dd>
+				<dd className={classnames('DateInput', {invalid: !validFields.date.valid })}>
+				<DateInput value={date} onChange={handleTextChange} name={names[names.indexOf('date')]}/>
+				</dd>
 				<dt>Start</dt>
 				<dd><TimeInput time={start} onChange={handleTimeChange} name={names[names.indexOf('start')]}/></dd>
 				<dt>End</dt>
 				<dd><TimeInput time={end} onChange={handleTimeChange} name={names[names.indexOf('end')]}/></dd>
+					{!validFields.time.valid &&
+						<p className="error-message"><i>Start time should be earlier than end time</i></p>
+					}
 				<button type="submit" value="Submit">Update</button>
 			</dl>
 		)
