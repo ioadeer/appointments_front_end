@@ -136,11 +136,6 @@ export default class SignupForm extends Component {
 			values= {...values, [key] : value.value};
 		}
 		const errors = this.props.errors;
-		if(errors){
-			const email_errors = errors.email; 
-			const name_errors = errors.name; 
-			const password_errors = errors.password1; 
-		}
 		const errors_log = []
 		if(errors){
 			for( const error in errors){

@@ -13,7 +13,7 @@ const Signup = (props) => {
 		<div>
 			{ props.success  
 			? 
-				<div>
+				<div className="SignUpSuccess">
 			  <p>Sign up successful!</p>
 				<button onClick={() => { props.resetSignupState();props.loginPage(); }}>
 				Return to log in page 

@@ -58,9 +58,11 @@ const AppointmentFieldSet = ({
 						<p className="error-message"><i>Start time should be earlier than end time</i></p>
 					}
 					</div>
+					<div className="ButtonContainer">
 					<button type="submit" value="Submit">
 						Add Date
 					</button>
+					</div>
 			</fieldset>
 		)
 	}

@@ -47,9 +47,11 @@ const SignupFieldset = ({
 									type="password" 
 				/> 
 			/>
-			<button type="submit" value="Submit">
-			Sign up	
-			</button>
+			<div className="ButtonContainer">
+				<button type="submit" value="Submit">
+				Sign up	
+				</button>
+			</div>
 		</fieldset>
 	)
 }

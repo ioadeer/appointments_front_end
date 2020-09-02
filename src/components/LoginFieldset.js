@@ -27,9 +27,11 @@ const LoginFieldset = ({
 			text="Password"
 			element= <TextInput className="Password" value={password} onChange={handleChange} name={names[names.indexOf('password')]} type="password" placeholder={validFields.name ? '' : 'Please enter valid password' }/> 
 			/>
+			<div className="ButtonContainer">
 			<button type="submit" value="Submit">
 			Log in	
 			</button>
+			</div>
 		</fieldset>
 	)
 }
