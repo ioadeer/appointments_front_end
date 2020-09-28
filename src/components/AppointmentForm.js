@@ -235,7 +235,7 @@ export default class AppointmentForm extends Component {
 			
 			<form onSubmit={
 				this.handleSubmit
-			} className="AppointmentForm">
+			} className="col s12 AppointmentForm">
 				{React.cloneElement(this.props.inputComponent,
 						{ props : values, names : names , handlers : handlers, validFields: validFields })}
 			</form>

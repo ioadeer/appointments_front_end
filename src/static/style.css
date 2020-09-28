@@ -1,5 +1,6 @@
 html {
-	font: 1.2em/1.4 Arial, Helvetica, sans-serif;
+/*	font: 1.2em/1.4 Arial, Helvetica, sans-serif; */
+	font-family: 1.2em/1.4 Arial, 'Epilogue', sans-serif;
 }
 body {
 
@@ -110,7 +111,7 @@ fieldset{
 		padding: 0;
 		display: inline-flex;
 	}
-
+/*
  	nav {
  	  border-bottom: solid 1px ;
  	}
@@ -125,6 +126,7 @@ fieldset{
  	  border: none;
  	  margin-right: 1em;
  	}
+	*/
 
 	.DateTimeInput-invalid{
 		margin-right: 3px;
@@ -185,8 +187,15 @@ fieldset{
 	.SignUpSuccess{
 			text-align: center;
 	}
-@media screen and (min-width: 70em){
 
+	.AddButton{
+transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+	}
+@media screen and (min-width: 70em){
+/*
  	nav {
  	  border-bottom: solid 1px ;
  	}
@@ -201,7 +210,7 @@ fieldset{
  	  border: none;
  	  margin-right: 1em;
  	}
-
+*/
 	form{
 	 display: flex;
 	 flex-direction: row;
@@ -263,7 +272,7 @@ fieldset{
 
 }
 @media screen and (min-width: 30em){
-
+/*
  nav {
 	 border-bottom: solid 1px ;
  }
@@ -277,6 +286,7 @@ fieldset{
 	 margin-right: 1em;
  }
 
+ */
 	form{
 	 display: flex;
 	 flex-direction: row;

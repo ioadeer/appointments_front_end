@@ -14,30 +14,30 @@ const AppointmentFieldSet = ({
 		const validDateTime = validFields.date && validFields.start
 
 		return (
-			<fieldset className="AppointmentFieldSet">
-				<legend>Create Appointment</legend>
+			<div className="AppointmentFieldSet">
+				<h4 style={{textAlign:"center"}}>Create an appointment</h4>
 					<Label 
-						className={classnames('Name',{ invalid: !validFields.name.valid && validFields.name.touched})}
+						className={classnames('input-field col s12 Name-input Name',{ invalid: !validFields.name.valid && validFields.name.touched})}
 						text="Name"
 						element= <TextInput 
-							className={classnames('TextInput',{ invalid: !validFields.name.valid && validFields.name.touched})}
+							id="name"
 							value={name} 
 							onChange={handleTextChange} 
 							name={names[names.indexOf('name')]}
 							placeholder={!validFields.name.touched ? '' : 'Please enter valid name' }
-							//isInputRequired={true}
+							isInputRequired={true}
 							/> 
 					/>
 					<Label 
-						className={classnames('Location',{ invalid: !validFields.location.valid && validFields.location.touched})}
+						className={classnames('input-field col s12 Location-input Location',{ invalid: !validFields.location.valid && validFields.location.touched})}
 						text="Location"
 						element = <TextInput 
-							className={classnames('TextInput',{ invalid: !validFields.location.valid && validFields.location.touched })}
+							//className={classnames('TextInput',{ invalid: !validFields.location.valid && validFields.location.touched })}
 							value={location} 
 							onChange={handleTextChange} 
 							name={names[names.indexOf('location')]}
 							placeholder={!validFields.location.touched ? '' : 'Enter a valid location' }
-							//isInputRequired={true}
+							isInputRequired={true}
 							/> 
 					/>
 					<div className={classnames({ 'DateTimeInput-invalid': !validFields.date.valid && !validFields.time.valid  && validFields.date.touched && validFields.start.touched })}>
@@ -58,12 +58,22 @@ const AppointmentFieldSet = ({
 						<p className="error-message"><i>Start time should be earlier than end time</i></p>
 					}
 					</div>
-					<div className="ButtonContainer">
-					<button type="submit" value="Submit">
-						Add Date
-					</button>
-					</div>
-			</fieldset>
+		 <div className="ButtonContainer" >
+                <button
+                  style={{
+
+										textAlign: "center",
+                    borderRadius: "3px",
+                    letterSpacing: "1.5px",
+                    marginTop: "1rem"
+                  }}
+                  type="submit"
+                  className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+                >
+                 Add Date 
+                </button>
+              </div>
+			</div>
 		)
 	}
 

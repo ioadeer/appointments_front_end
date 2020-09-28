@@ -103,16 +103,22 @@ export default class LoginForm extends Component {
 
 		return(
 			
-			<form onSubmit={
-				this.handleSubmit
-			} className="LoginForm">
-				<LoginFieldset
-					props={values}
-					handleChange={this.handleTextChange}
-					names={names}
-					validFields = {validFields}
-				/>
-			</form>
+			<div className="container">
+				<div style={{ marginTop: "4rem" }} className="row">
+					<div className="col s8 offset-s2">
+					<form onSubmit={
+						this.handleSubmit
+					} className="col s12">
+						<LoginFieldset
+							props={values}
+							handleChange={this.handleTextChange}
+							names={names}
+							validFields = {validFields}
+						/>
+					</form>
+					</div>
+				</div>
+			</div>
 		)
 	}
 }
