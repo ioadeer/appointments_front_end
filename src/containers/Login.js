@@ -19,8 +19,20 @@ const Login = (props) => {
 				{ props.errors &&
 					<p class="login-error"> { props.errors.detail } </p>
 				}
-				<p>Please register if you don't have an account yet </p>
-			  <button onClick={() => { props.signup() }}>Sign up</button>
+				</div>
+				<div className="container">
+					<div style={{ marginTop: "4rem"}} className="row">
+						<div className="col s8 offset-s2">
+							<div style={{ display: "flex", justifyContent: "flex-end"}}>
+								<p>Please register if you don't have an account yet </p>
+				  			<button 
+			     				className="btn btn-large btn-flat waves-effect white black-text"	
+									onClick={() => { props.signup() }}>
+										Sign up
+								</button>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		)

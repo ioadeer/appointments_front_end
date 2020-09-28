@@ -152,22 +152,26 @@ export default class SignupForm extends Component {
 		}
 
 		return(
-			<div>
-			<form onSubmit={
-				this.handleSubmit
-			} className="SignupForm">
-				<SignupFieldset
-					props={values}
-					handleChange={this.handleTextChange}
-					names={names}
-					validFields={validFields}
-				/>
-			</form>
-			{ errors &&
-				<ul className="signup-errors">
-				{ errors_log }
-				</ul>
-			}
+			<div className="container">
+				<div style={{ marginTop: "4rem"}} className="row">
+					<div className="col s8 offset-s2">
+						<form onSubmit={
+							this.handleSubmit
+						} className="col s12 SignupForm">
+							<SignupFieldset
+								props={values}
+								handleChange={this.handleTextChange}
+								names={names}
+								validFields={validFields}
+							/>
+						</form>
+						{ errors &&
+							<ul className="signup-errors">
+							{ errors_log }
+							</ul>
+						}
+					</div>
+				</div>
 			</div>
 		)
 	}

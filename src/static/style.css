@@ -9,6 +9,11 @@ body {
 	
 }
 
+	.MobileLogout{
+		display: flex;
+		justify-content: flex-end;
+	}
+
 ul{
 	list-style: none;
 }
@@ -194,7 +199,11 @@ transform: translate(-50%, -50%);
     -o-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
 	}
+
 @media screen and (min-width: 70em){
+	.MobileLogout{
+		display: none;
+	}
 /*
  	nav {
  	  border-bottom: solid 1px ;
@@ -272,6 +281,10 @@ transform: translate(-50%, -50%);
 
 }
 @media screen and (min-width: 30em){
+	.MobileLogout{
+		display: none;
+		justify-content: flex-end;
+	}
 /*
  nav {
 	 border-bottom: solid 1px ;

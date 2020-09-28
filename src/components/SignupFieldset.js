@@ -9,50 +9,64 @@ const SignupFieldset = ({
 }) => {
 	const { name, email, password, passwordRepeat } = props
 	return (
-		<fieldset className="SignupFieldSet">
-			<legend>Sign up</legend>
-			<Label className="Name" text="Name"
-			element= <TextInput 
-									className={classnames('TextInput',{ invalid: !validFields.name.valid && validFields.name.touched})}
+		<div className="col s12 SignupFieldSet">
+			<h4 style={{textAlign:"center"}}>Sign up</h4>
+			<Label 
+				className="input-field col s12 Name-input Name" 
+				text="Name"
+				element= <TextInput 
 									placeholder={!validFields.name.touched ? '' : 'Please enter valid name' }
 									value={name} 
 									onChange={handleChange} 
 									name={names[names.indexOf('name')]}
+									isInputRequired={true}
 				/> 
 			/>
-			<Label className="Email" text="Email"
+			<Label className="input-field col s12 Email-input Email" text="Email"
 			element= <TextInput 
-									className={classnames('TextInput',{ invalid: !validFields.email.valid && validFields.email.touched })}
 									placeholder={!validFields.email.touched ? '' : 'Enter a valid email' }
 									value={email} 
 									onChange={handleChange} 
 									name={names[names.indexOf('email')]}
+									isInputRequired={true}
 				/> 
 			/>
-			<Label className="Password" text="Password"
+			<Label className="input-field col s12 Password-input Password" text="Password"
 			element= <TextInput 
 									className="Password" 
 									value={password} 
 									onChange={handleChange} 
 									name={names[names.indexOf('password')]} 
 									type="password" 
+									isInputRequired={true}
 				/> 
 			/>
-			<Label className="Password" text="Password"
+			<Label className="input-field col s12 Password-input Password" text="Password"
 			element= <TextInput 
 									className="Password" 
 									value={passwordRepeat} 
 									onChange={handleChange} 
 									name={names[names.indexOf('passwordRepeat')]} 
 									type="password" 
+									isInputRequired={true}
 				/> 
 			/>
-			<div className="ButtonContainer">
-				<button type="submit" value="Submit">
-				Sign up	
-				</button>
-			</div>
-		</fieldset>
+		 <div className="ButtonContainer" >
+                <button
+                  style={{
+
+										textAlign: "center",
+                    borderRadius: "3px",
+                    letterSpacing: "1.5px",
+                    marginTop: "1rem"
+                  }}
+                  type="submit"
+                  className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+                >
+                Sign Up 
+                </button>
+              </div>
+		</div>
 	)
 }
 
